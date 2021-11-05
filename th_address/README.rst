@@ -56,17 +56,17 @@ What this module does
     :width: 80 %
     :align: center
 
-* เปลี่ยนค่า ``address_format`` ให้ใช่้ชื่อ จังหวัด ``state_name`` แทน ``state_id`` ที่เป็นค่าตั้งต้น
-* ตั้งค่า Vat Label เป็น Tax ID
+* Change the ``address_format`` value to use the name province ``state_name`` instead of the default ``state_id``.
+* Set Vat Label to Tax ID
 
-.. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/country_setting.png
-    :alt: address_format และ Vat label
-    :width: 80 %
-    :align: center
+.. figure:: https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/country_setting.png
+     :alt: address_format and Vat label
+     :width: 80 %
+     :align: center
 
-ลองใช้งาน th_address จาก docker image
+Try using th_address from docker image.
 -----------------------------------------
-โมดูลนี้รวมไว้ใน `docker odoo-th <https://github.com/poonlap/odoo-th>`_ แล้ว สามารถลองใช้ได้ทันที.::
+This module is included in `docker odoo-en <https://github.com/poonlap/odoo-en>`_ so you can try it now.::
 
     $ git clone https://github.com/poonlap/odoo-th.git
     $ cd odoo-th/docker
@@ -103,28 +103,28 @@ Import address information in English
 
     https://github.com/poonlap/odoo-en/raw/14.0/th_address/data/en/%s.zip
 
-* ไปที่ Contacts > Configuration > Import from Geonames
-* เลือก Thailand และกดปุ่ม import
+* Go to Contacts > Configuration > Import from Geonames.
+* Select Thailand and press the import button.
 
-.. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_english.png
-    :alt: ข้อมูลภาษาอังกฤษ
+.. figure:: https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_english.png
+    :alt: English information
     :width: 80 %
     :align: center
 
-* กรณีที่ต้องการข้อมูลผสม ภาษาไทยและอังกฤษ ให้ตั้งค่า ``geonames.url`` เป็น::
+* In case of needing mixed data Thai and English, set ``geonames.url`` to::
 
-    https://github.com/poonlap/odoo-th/raw/14.0/th_address/data/th_en/%s.zip
+    https://github.com/poonlap/odoo-en/raw/14.0/th_address/data/th_en/%s.zip
 
 
-.. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_mix.png
-    :alt: ข้อมูลภาษาผสม
+.. figure:: https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_mix.png
+    :alt: Mixed Language Information
     :width: 80 %
     :align: center
 
-* ถ้าต้องการนำเข้าข้อมูลที่อยู่ประเทศอื่นๆ ให้ลบ system parameter ``geonames.url`` ทิ้ง. แล้วโมดูล `Base Location Geonames Import <https://github.com/OCA/partner-contact/tree/14.0/base_location_geonames_import>`_ จะดาวน์โหลดข้อมูลจากแหล่งที่เตรียมไว้ให้เอง.
+* To import other country address data, delete the system parameter ``geonames.url``. Then the module `Base Location Geonames Import <https://github.com/OCA/partner-contact/tree/14.0/. base_location_geonames_import>`_ will download the data from the provided source.
 
 Bug Tracker
-===========
+============
 
 Bugs are tracked on `GitHub Issues <https://github.com/poonlap/odoo-th/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
