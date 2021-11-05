@@ -1,100 +1,100 @@
-Dockerfile สำหรับสร้าง Docker image ที่ใช้งาน Odoo 14.0 (ณ ตอนที่เขียน เดือน พ.ค. 2021) หรือเวอร์ชั่นอื่นๆเช่น 13.0 หรือ 12.0 ร่วมกับภาษาไทย (Thai localization) ได้ทันที โดยรวม
+Dockerfile for creating Docker images that use Odoo 14.0 (at the time of writing May 2021) or other versions such as 13.0 or 12.0 with Thai localization immediately overall.
 
-- ฟอนต์ภาษาไทย [Laksaman (Sarabun)](https://thep.blogspot.com/2014/07/laksaman-font.html) สำหรับแสดงผลภาษาไทยเวลาพิมพ์เอกสาร PDF
+- Thai font [Laksaman (Sarabun)](https://thep.blogspot.com/2014/07/laksaman-font.html) for displaying Thai language when printing PDF documents
 - [OCA l10n-thailand module](https://github.com/OCA/l10n-thailand)
 - [OCA web modules](https://github.com/OCA/web)
 - [OCA partner and contact management modules](https://github.com/OCA/partner-contact)
 - [OCA Server UX](https://github.com/OCA/server-ux/)
 - [OCA alternative reporting engines and reporting utilities ](https://github.com/OCA/reporting-engine/)
-- [OCA Account reconcile modules ](https://github.com/OCA/account-reconcile) widget reconcile ที่มีในรุ่น 13.0 แต่ไม่มีในรุ่น 14.0
-- [th_address โมดูลที่อยู่ภาษาไทย](https://github.com/poonlap/odoo-th/tree/14.0/th_address) สร้างข้อมูล ตำบล, อำเภอ, จังหวัด พร้อมใช้งาน และใช้ความสามารถ autocompletion ของโมดูล base_location
-- [th_address_vat โมดูลกรอกที่อยู่จากเลข VAT](https://github.com/poonlap/odoo-th/tree/14.0/th_address_vat) หาที่อยู่จาก web service ของกรรมสรรพากรจากเลขประจำตัวผู้เสียภาษี และกรอกที่อยู่ให้อัตโนมัติ ไม่ผิดพลาด
-- ตั้ง timezone ประเทศไทย สำหรับดูเวลาใน log. ถ้ารัน [Odoo Docker official Images](https://hub.docker.com/_/odoo) เวลาจะไม่ตรงกับเมืองไทย.
-- [Dockerfile](https://github.com/poonlap/odoo-th/blob/14.0/docker/Dockerfile) ใช้ base มาจาก [Odoo Official](https://hub.docker.com/_/odoo) มีการเพิ่ม Odoo repository ไว้สำหรับ upgrade version ตาม nightly build ของแต่ละวันลงใน image (local)
+- [OCA Account reconcile modules ](https://github.com/OCA/account-reconcile) widget reconcile Available in version 13.0 but not in version 14.0
+- [th_address Thai address module](https://github.com/poonlap/odoo-th/tree/14.0/th_address) Create information, sub-district, district, province, available and use the ability autocompletion of the module base_location
+- [th_address_vat The module fills in the address from the VAT number](https://github.com/poonlap/odoo-th/tree/14.0/th_address_vat) Find the address from the web service of the Revenue Department from the tax ID number and fill in the address automatically, no errors
+- Set timezone Thailand to see time in log. If running [Odoo Docker official Images](https://hub.docker.com/_/odoo) time will not match Thailand.
+- [Dockerfile](https://github.com/poonlap/odoo-en/blob/14.0/docker/Dockerfile) use base from [Odoo Official](https://hub.docker.com/_/odoo) Yes Adding Odoo repository for daily nightly build version upgrade to image (local)
 
-# สารบัญ
-- [การสร้าง docker image](#การสร้าง-docker-image)
-- [รันด้วย docker-compose](#รันด้วย-docker-compose)
-- [ตัวอย่างหน้าจอ](#ต้วอย่างหน้าจอ)
-- [วิธี upgrade odoo ใน container](#วิธี-upgrade-Odoo-จาก-nightly-build)
-- [ใช้ odoo docker พัฒนาโมดูล](#ใช้-odoo-docker-พัฒนาโมดูล)
-- [รัน Unit test](#รัน-Unit-Test)
+# list of contents
+- [creating docker image](#creating-docker-image)
+- [run with docker-compose](#run with-docker-compose)
+- [screen preview](#screen preview)
+- [How to upgrade odoo in container](#method-upgrade-Odoo-from-nightly-build)
+- [use odoo docker module development](#use-odoo-docker-module development)
+- [Run Unit test](#Run-Unit-Test)
 
-# การสร้าง docker image
+# Creating docker image
 
-ใช้ --build-arg และระบุ VERSION ตอน build.
+Use --build-arg and specify VERSION when build.
 
 ## Odoo 14
 
 ```
-$ docker build --build-arg VERSION=14.0 -t poonlap/odoo-th:14.0 .
-$ docker tag poonlap/odoo-th:14.0 poonlap/odoo-th:latest
+$ docker build --build-arg VERSION=14.0 -t poonlap/odoo-en:14.0 .
+$ docker tag poonlap/odoo-en:14.0 poonlap/odoo-en:latest
 ```
 
 ## Odoo 13
 
 ```
-$ docker build --build-arg VERSION=13.0 -t poonlap/odoo-th:13.0 .
+$ docker build --build-arg VERSION=13.0 -t poonlap/odoo-en:13.0 .
 ```
 
-# รันด้วย docker-compose
+# run with docker-compose
 
-ใน repository นี้เตรียมไฟล์ docker-compose.yml ตัวอย่างไว้ให้แล้ว
+In this repository prepare the file docker-compose.yml An example has been provided.
 
 ```
-$ git clone https://github.com/poonlap/odoo-th.git
-$ cd odoo-th/docker
+$ git clone https://github.com/poonlap/odoo-en.git
+$ cd odoo-en/docker
 $ docker-compose up
 
 ```
 
-จากตัวอย่างจะมีการ mount โฟล์เดอร์ในคอนเทนเนอร์ไปที่ ./addons สามารถเพิ่มโมดูลที่สร้างเองหรือต้องการทดสอบไว้ที่นี่ได้.
+As an example, the container folder is mounted to ./addons, you can add custom or testing modules here.
 
-หลังจากรัน docker-composer ได้แล้ว เปิดเบราเซอร์ เข้า http://localhost:8069
+After running docker-composer, open a browser and go to http://localhost:8069.
 
-# ตัวอย่างหน้าจอ
+# Screen preview
 
-## โมดูล l10n_thailand
+## Module l10n_thailand
 
-- ไปที่ Apps ลบ filter แล้วพิมพ์ thai เพื่อหาโมดูลทั้งหมดของไทย และติดตั้ง.
-- Odoo 14.0 (ณ เดือนพ.ค. 2021)
+- Go to Apps, remove filter and type thai to find all Thai modules and install.
+- Odoo 14.0 (as of May 2021)
 
-![](https://raw.githubusercontent.com/poonlap/odoo-th/14.0/docker/static/screenshots/apps_v14.png)
+![](https://raw.githubusercontent.com/poonlap/odoo-en/14.0/docker/static/screenshots/apps_v14.png)
 
-- Odoo 13.0 (ณ เดือนพ.ค. 2021)
+- Odoo 13.0 (as of May 2021)
 
-![](https://raw.githubusercontent.com/poonlap/odoo-th/14.0/docker/static/screenshots/apps_v13.png)
+![](https://raw.githubusercontent.com/poonlap/odoo-en/14.0/docker/static/screenshots/apps_v13.png)
 
-## PDF ภาษาไทย
+## PDF Thai
 
-สร้างใบเสนอราคา ตั้งชื่อลูกค้าภาษาไทย สั่งพิมพ์
+Create a quote Set the customer's name in Thai. Print order.
 
-![](https://raw.githubusercontent.com/poonlap/odoo-th/14.0/docker/static/screenshots/quotation_pdf.png)
+![](https://raw.githubusercontent.com/poonlap/odoo-en/14.0/docker/static/screenshots/quotation_pdf.png)
 
-## ข้อมูลจังหวัด
+## Province information
 
-![](https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_provinces.png)
+![](https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_provinces.png)
 
-## ข้อมูลตำบล อำเภอ
+## information of sub-districts, districts
 
-![](https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_cities.png)
+![](https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_cities.png)
 
-## ข้อมูลรหัสไปรษณีย์
+## Zip code information
 
-![](https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_zips.png)
+![](https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_zips.png)
 
-# วิธี upgrade Odoo จาก nightly build
+# How to upgrade Odoo from nightly build
 
-Docker image ที่สร้างไว้จะเป็นรุ่นตอนที่ build image ไว้. ดูรุ่นวันที่ได้ตอนที่รัน ตัวอย่างเช่น
+The created Docker image will be the version when the image was built. You can find the version date when running. For example:
 
 ```
 $ docker-compose up
 ...
-db_1   | 2021-05-24 15:54:53.932 UTC [1] LOG:  database system is ready to accept connections
-web_1  | 2021-05-24 22:54:54,415 1 INFO ? odoo: Odoo version 14.0-20210520
+db_1 | 2021-05-24 15:54:53.932 UTC [1] LOG: database system is ready to accept connections
+web_1 | 2021-05-24 22:54:54,415 1 INFO ? odoo: Odoo version 14.0-20210520
 ...
 ```
-วันนี้ที่รันเป็นวันที่ 2021-05-24 แต่ Odoo เป็นเวอร์ชั่น 14.0-20210520. สมมติว่าเราต้องการ upgrade ให้เป็น nightly build ปัจจุบัน (20210524), ก่อนอื่นต้องหา container id แล้วรัน docker exec เพื่อเข้าไปใน shell.
+Today running is 2021-05-24 but Odoo is the version. 14.0-20210520. Let's say we want to upgrade to the current nightly build (20210524), first find the container id and run docker exec to get into the shell.
 
 ```
 $  docker ps
@@ -144,7 +144,7 @@ Processing triggers for libc-bin (2.28-10) ...
 root@4e8a53b7b0f3:/# exit
 exit
 ```
-เมื่อ upgrade แล้วก็ commit image ใส่ tag ใหม่เช่น poonlap/odoo-th:14.0.20210524
+When upgrade and commit image, put new tag like poonlap/odoo-th:14.0.20210524
 ```
 $ docker commit 4e8a53b7b0f3 poonlap/odoo-th:14.0.20210524
 $ docker images
@@ -155,11 +155,11 @@ odoo              latest          eeb9bda32241   5 days ago           1.4GB
 postgres          10              ae022a26b238   9 months ago         200MB
 ```
 
-# ใช้ odoo docker พัฒนาโมดูล
+# Use odoo docker to develop modules
 
-## เตรียมไฟล์ docker-compose.yml
+## Prepare docker-compose.yml file
 
-ใน image docker มี python watchdog อยู่แล้ว และใน docker-compose.yml ใช้ตัวเลือก --dev=all มีผลให้เวลา edit ไฟล์ในโมดูลแก้ไข odoo จะ restart โดยอัตโนมัติ
+In image docker there is already a python watchdog and in docker-compose.yml using --dev=all option will cause the edit file in odoo editor module to restart automatically.
 
 ```
 version: '2'
@@ -203,9 +203,9 @@ web_1  | 2019-12-01 22:27:57,633 1 INFO ? odoo.service.server: HTTP service (wer
 ...
 ```
 
-## สร้าง scaffold
+## Create a scaffold
 
-หา container ID ของ odoo ที่รันจาก docker-compose
+find container ID of odoo running from docker-compose
 
 ```
 $ docker ps
@@ -214,7 +214,7 @@ CONTAINER ID        IMAGE                    COMMAND                  CREATED   
 51a778ba4e1c        postgres:10              "docker-entrypoint.s…"   17 minutes ago      Up 8 minutes        5432/tcp                           run_db_1
 ```
 
-ตัวอย่าง เช่น container ID เป็น 6329d67008d4
+For example, the container ID is 6329d67008d4.
 
 ```
 $ docker exec --user 0 63 odoo scaffold mymodule /mnt/extra-addons
@@ -222,10 +222,10 @@ $ ls addons/mymodule/
 __init__.py  __manifest__.py  controllers/  demo/  models/  security/  views/
 ```
 
-ก็จะได้โฟลเดอร์ mymodule อยู่ใน extra-addons ซึ่งจะไปอยู่ในโฟลเดอร์ addons ที่กำหนดไว้ใน docker-composer.yml นั่นเอง.
+This will get the mymodule folder in the extra-addons which will be in the addons folder defined in . docker-composer.yml itself.
 
-# รัน Unit Test
-กรณีที่สร้างโมดูลแล้วต้องการรัน Unit Test. ตัวอย่าง รัน Unit Test ของโมดูบ l10n_th_partner 
+# Run Unit Test
+If you create a module and want to run Unit Test. For example, run Unit Test of module l10n_th_partner.
 ```
 $  docker-compose run --rm web  --test-enable -i l10n_th_partner -d testdb --log-level=test
 Creating network "docker_default" with the default driver
