@@ -19,32 +19,32 @@ Thai Localization - Thai address data
 
 |badge1| |badge2| |badge3| 
 
-โมดูลช่วยนำเข้าข้อมูลตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์ เป็นภาษาไทย (หรือภาษาอังกฤษ) และตั้งค่าต่างๆให้พร้อมใช้งาน
+The module helps to import sub-district, district, province, postal code data in Thai (or English) and set various settings to use.
 
-สิ่งที่โมดูลนี้ทำ
+What this module does
 ---------------
-* กรณีที่ภาษาหลักที่ใช้ไม่ใช่ภาษาไทย โมดูลนี้จะเพิ่มภาษาไทยเป็นภาษาที่ 2 และนำเข้าคำแปลภาษาไทยในระบบ. 
-* ติดตั้งโมดูล `Base Location Geonames Import <https://github.com/OCA/partner-contact/tree/14.0/base_location_geonames_import>`_ ซึ่งโมดูลนี้จะติดตั้งโมดูล `Location management (aka Better ZIP) <https://github.com/OCA/partner-contact/tree/14.0/base_location>`_ อีกที
-* ตั้งค่า system parameter ``geonames.url`` สำหรับดึงข้อมูล ตำบล, อำเภอ, จังหวัด และรหัสไปรษณีย์ เป็นภาษาไทย. หากต้องการเป็นภาษาอังกฤษ หรือผสมกัน สามารถเปลี่ยนได้ภายหลัง
-* เปลี่ยน form โดยสลับตำแหน่งให้ Location completion ขึ้นมาก่อน street2. เวลาพิมพ์ที่อยู่ ลำดับการกรอกข้อมูลจะเป็นธรรมชาติกว่า คือ บ้านเลขที่, ถนน ใส่ในช่อง street1 ตามด้วย Location completion. ถ้าเลือกตำบลอำเภอเสร็จแล้ว จะกรอกใส่ช่องด้านล่าง ตามลำดับจากด้านบนไปด้านล่าง.
-* ระหว่างติดตั้ง จะนำเข้า (import) ข้อมูล ตำบล, อำเภอ, จังหวัด และรหัสไปรษณีย์ เป็นภาษาไทยอัตโนมัติ. เมื่อติดตั้งโมดูลเสร็จแล้ว ข้อมูลพร้อมใช้งานทันที ลดขั้นตอนการนำเข้าข้อมูลเอง
+* In case the main language used is not Thai This module adds Thai as a second language and imports Thai translation into the system.
+* Install the `Base Location Geonames Import Module <https://github.com/OCA/partner-contact/tree/14.0/base_location_geonames_import>`_ which will install the `Location management (aka Better ZIP) module <https: https://github.com/OCA/partner-contact/tree/14.0/base_location>`_ again.
+* Set system parameter ``geonames.url`` for tambon, district, province and postal code in Thai language.
+* Change the form by swapping the Location completion position before street2. The order of filling in information is more natural, namely house number, street. Enter in the street1 field followed by Location completion. will fill in the box below in order from top to bottom.
+* During installation, it will import (import) information of Sub-District, District, Province and Postal Code. in Thai language automatically. When the module is finished installing The information is immediately available. Simplify the process of importing data manually.
 
-.. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_provinces.png
-    :alt: ข้อมูลจังหวัด
+.. figure:: https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_provinces.png
+    :alt: Province information
     :width: 80 %
     :align: center
 
-.. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_cities.png
-    :alt: ข้อมูลตำบลและอำเภอ
+.. figure:: https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_cities.png
+    :alt: Subdistrict and District Information
     :width: 80 %
     :align: center
 
-.. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/data_zips.png
-    :alt: ข้อมูลรหัสไปรษณีย์
+.. figure:: https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/data_zips.png
+    :alt: Postal Code Information
     :width: 80 %
     :align: center
 
-* เวลาใช้ Location completion ค้นหาที่อยู่ (ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์) เมื่อเลือกข้อมูลที่ค้นหาได้แล้ว จะใส่ชื่อตำบลในช่อง Street2 และใส่ชื่ออำเภอในช่อง Ciy ให้อัตโนมัติ
+* When using Location completion, search for an address (Tam, District, Province, Postal Code). Will put the district name in the Street2 field and automatically enter the district name in the Ciy field.
 
 .. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/location_completion_01.png
     :alt: ค้นหา
@@ -83,27 +83,25 @@ Thai Localization - Thai address data
    :local:
 
 Usage
-=====
+======
 
-สร้าง Contact หรือลูกค้าใหม่
+Create a new contact or customer
 ------------------------
-กรอกชื่อที่อยู่ตามปกติ เมื่อจะเริ่มกรอกตำบลหรือแขวง ให้ไปที่ช่อง "Location completion"
+Enter your name and address as usual. When you start filling in a district or district, go to the "Location completion" field.
 
-.. figure:: https://raw.githubusercontent.com/poonlap/odoo-th/14.0/th_address/static/description/autocompletion.png
+.. figure:: https://raw.githubusercontent.com/poonlap/odoo-en/14.0/th_address/static/description/autocompletion.png
     :width: 80 %
     :align: center
 
-กรอกคำที่ต้องการค้นหา เช่น ชื่อตำบล หรือ ชื่ออำเภอ หรือ รหัสไปรษณีย์ แล้วเลือกข้อมูลที่ระบบหามาให้. ระบบจะเติมช่อง street2 ให้เป็นตำบล, ช่อง city เป็นอำเภอ, ช่อง state เป็นจังหวัด เติมรหัสไปรษณีย์ให้อัตโนมัติ สามารถป้องกันความผิดพลาดกรณีผู้ใช้กรอกผิดได้
+Enter the words you want to search for, such as the name of the district or the name of the district or the zip code and select the information that the system finds for you. The system will fill the street2 field as a sub-district, city field as district, state field as province, automatically fill in the postal code. Able to prevent errors in case the user enters wrongly.
 
-นำเข้าข้อมูลที่อยู่เป็นภาษาอังกฤษ
+Import address information in English
 ---------------------------------
-* เข้า developer mode
-* ไปที่ Settings > Technical > System Parameters
-* แก้ค่าตัวแปร ``geonames.url`` เป็น::
+* Enter developer mode
+* Go to Settings > Technical > System Parameters.
+* Change the ``geonames.url`` variable to::
 
-    https://github.com/poonlap/odoo-th/raw/14.0/th_address/data/en/%s.zip
-
-
+    https://github.com/poonlap/odoo-en/raw/14.0/th_address/data/en/%s.zip
 
 * ไปที่ Contacts > Configuration > Import from Geonames
 * เลือก Thailand และกดปุ่ม import
